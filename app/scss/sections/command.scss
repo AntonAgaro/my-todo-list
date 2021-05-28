@@ -1,0 +1,45 @@
+.command {
+    padding: 20px;
+    gap: 10px;
+    &__input {
+        display: inline-block;
+        width: 60%;
+    }
+    &__create-btn {
+        position: relative;
+        color: #673C94;
+        background-color:#f9f8f7;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        border: 1px solid #673C94;
+        transition: color .15s ease-in-out, box-shadow .15s ease-in-out;
+        &:hover {
+            box-shadow: 0 0 20px #673C94;
+        }
+        &:active {
+            color: #f9f8f7;
+            background-color: #673C94;   
+            box-shadow: 0 0 20px #f9f8f7;
+        }
+        &--edit {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    }
+    &__error {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 96px;
+        width: 200px;
+        padding: 5px;
+        color: red;
+        background: white;
+    }
+    &__error--active {
+        display: block;
+    }
+}

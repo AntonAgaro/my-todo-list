@@ -1,0 +1,10 @@
+@import 'vars';
+@import 'fonts';
+@import 'reset';
+@import 'global';
+
+//sections
+@import './sections/command';
+@import './sections/notes';
+@import './sections/descr';
+@import './sections/popup';

@@ -1,0 +1,32 @@
+.notes {
+    margin-top: 10px;
+    &__col {
+        border-right: 2px solid #F9F8F7;
+        display: flex;
+        flex-flow: column;
+        gap: 5px;
+        &--left {
+            border-left: 2px solid #F9F8F7;
+        }
+    }
+    &__note {
+        position: relative;
+        padding: 10px;
+        display: flex;
+        flex-flow: column;
+        gap: 5px;
+        width: 100%;
+        min-height: 100px;
+        background-color: white;
+        border-radius: 10px;
+    }
+    &__note-title {
+        text-align: center;
+    }
+    &__note-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+}

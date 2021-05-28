@@ -1,0 +1,13 @@
+.descr {
+    margin-top: 10px;
+    color: #f9f8f7;
+    &__todo {
+        color: red;
+    }
+    &__in-work {
+        color: yellow;
+    }
+    &__done {
+        color: green;
+    }
+}
