@@ -40,7 +40,9 @@ export default class EditBtn extends Popup {
         targetNote.remove();
         //Обновляем id всех заметок в массиве после сдвига
         notes.forEach((item, index) => item.id = index);
-        console.log(notes);
+        //Кладем в loclStorage
+        localStorage.setItem('list', JSON.stringify(notes));
+
     }
 
     bindEditBtn() {

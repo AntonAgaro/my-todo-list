@@ -1,9 +1,10 @@
 .notes {
     margin-top: 10px;
     &__col {
+        min-height: 300px;
         border-right: 2px solid #F9F8F7;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        display: flex;
+        flex-flow: column;
         gap: 5px;
         &--left {
             border-left: 2px solid #F9F8F7;
@@ -19,6 +20,10 @@
         min-height: 100px;
         background-color: white;
         border-radius: 10px;
+        cursor: pointer;
+        &--selected {
+            opacity: 0.6;
+        }
     }
     &__note-title {
         padding: 5px;

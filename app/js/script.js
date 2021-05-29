@@ -98,14 +98,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "notes", function() { return notes; });
 /* harmony import */ var _modules_create_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/create-button */ "./app/js/modules/create-button.js");
 /* harmony import */ var _modules_edit_btn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/edit-btn */ "./app/js/modules/edit-btn.js");
+/* harmony import */ var _modules_drag_and_drop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/drag-and-drop */ "./app/js/modules/drag-and-drop.js");
+/* harmony import */ var _modules_return_notes_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/return-notes-list */ "./app/js/modules/return-notes-list.js");
+
+
 
 
 var notes = [];
+var notesList = localStorage.getItem('list');
+console.log(notesList);
+
+try {
+  notes = JSON.parse(notesList);
+  Object(_modules_return_notes_list__WEBPACK_IMPORTED_MODULE_3__["default"])(notes);
+} catch (_unused) {}
+
+;
 window.addEventListener('DOMContentLoaded', function () {
   var createBtn = new _modules_create_button__WEBPACK_IMPORTED_MODULE_0__["default"]('#create', '#field', notes, '#todo');
   createBtn.bindBtn();
   var editBtn = new _modules_edit_btn__WEBPACK_IMPORTED_MODULE_1__["default"]('#edit-note');
   editBtn.bindEditBtn();
+  Object(_modules_drag_and_drop__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
 
 
@@ -250,18 +264,23 @@ var CreateBtn = /*#__PURE__*/function (_Button) {
       //Создаем заметку
       var note = document.createElement('div');
       note.className = 'notes__note';
+      note.draggable = 'true';
       note.innerHTML = "\n        <div class=\"notes__close-wrapper\">\n            <i class=\"far fa-times-circle notes__note-close\"></i>\n        </div>\n        <p class=\"notes__note-title\">".concat(this.input.value, "</p>\n        <p class=\"notes__note-descr\"></p>\n        <div class=\"notes__edit-wrapper\">\n            <button class=\"command__create-btn\" id=\"edit-note\">Edit</button>\n        </div>\n        "); //Создаем объект 
 
       var newNote = {
-        title: this.input.value
+        title: this.input.value,
+        status: this.wrapper.id
       }; //Пушим в массив новый объект, вычисляем его индекс и делаем его id
 
       this.notes.push(newNote);
       var noteId = this.notes.indexOf(newNote);
       note.id = noteId;
-      newNote.id = noteId; //Выводим на страницу
+      newNote.id = noteId; //Кладем в loclStorage
 
-      this.wrapper.append(note); //Очищаем инпут
+      localStorage.setItem('list', JSON.stringify(this.notes)); //Выводим на страницу
+
+      this.wrapper.append(note);
+      console.log(this.notes); //Очищаем инпут
 
       _get(_getPrototypeOf(CreateBtn.prototype), "cleanInput", this).call(this);
     }
@@ -290,6 +309,60 @@ var CreateBtn = /*#__PURE__*/function (_Button) {
 }(_button__WEBPACK_IMPORTED_MODULE_13__["default"]);
 
 
+
+/***/ }),
+
+/***/ "./app/js/modules/drag-and-drop.js":
+/*!*****************************************!*\
+  !*** ./app/js/modules/drag-and-drop.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
+/* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../main */ "./app/js/main.js");
+
+
+
+var dragAndDrop = function dragAndDrop() {
+  var todo = document.querySelector('#todo'),
+      inWork = document.querySelector('#in-work'),
+      done = document.querySelector('#done');
+  document.body.addEventListener('dragstart', function (event) {
+    var target = event.target;
+
+    if (target.matches('.notes__note')) {
+      target.classList.add('notes__note--selected');
+    }
+  });
+  document.body.addEventListener('dragend', function (event) {
+    var target = event.target;
+
+    if (target.matches('.notes__note')) {
+      target.classList.remove('notes__note--selected');
+    }
+  });
+  document.body.addEventListener('dragover', function (event) {
+    event.preventDefault();
+    var target = event.target;
+    var activeItem = document.querySelector('.notes__note--selected');
+
+    if (target == inWork || target == todo || target == done) {
+      target.append(activeItem);
+      var activeNoteObj = _main__WEBPACK_IMPORTED_MODULE_1__["notes"].find(function (item, index) {
+        if (index == activeItem.id) return item;
+      });
+      activeNoteObj.status = target.id; //Кладем в loclStorage
+
+      localStorage.setItem('list', JSON.stringify(_main__WEBPACK_IMPORTED_MODULE_1__["notes"]));
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (dragAndDrop);
 
 /***/ }),
 
@@ -398,8 +471,9 @@ var EditBtn = /*#__PURE__*/function (_Popup) {
 
       _main__WEBPACK_IMPORTED_MODULE_13__["notes"].forEach(function (item, index) {
         return item.id = index;
-      });
-      console.log(_main__WEBPACK_IMPORTED_MODULE_13__["notes"]);
+      }); //Кладем в loclStorage
+
+      localStorage.setItem('list', JSON.stringify(_main__WEBPACK_IMPORTED_MODULE_13__["notes"]));
     }
   }, {
     key: "bindEditBtn",
@@ -503,7 +577,9 @@ var Popup = /*#__PURE__*/function () {
       });
       noteObj.title = this.title.value;
       noteObj.text = this.descr.value;
-      noteObj.backgroundColor = this.color.value;
+      noteObj.backgroundColor = this.color.value; //Кладем в loclStorage
+
+      localStorage.setItem('list', JSON.stringify(this.notes));
       this.closePopup();
       console.log(noteObj);
       console.log(_main__WEBPACK_IMPORTED_MODULE_1__["notes"]);
@@ -531,6 +607,39 @@ var Popup = /*#__PURE__*/function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "./app/js/modules/return-notes-list.js":
+/*!*********************************************!*\
+  !*** ./app/js/modules/return-notes-list.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var returnNotesList = function returnNotesList(notes) {
+  notes.forEach(function (item) {
+    var note = document.createElement('div');
+    note.className = 'notes__note';
+    note.draggable = 'true';
+    note.id = item.id;
+    note.innerHTML = "\n            <div class=\"notes__close-wrapper\">\n                <i class=\"far fa-times-circle notes__note-close\"></i>\n            </div>\n            <p class=\"notes__note-title\">".concat(item.title, "</p>\n            <p class=\"notes__note-descr\">").concat(item.text, "</p>\n            <div class=\"notes__edit-wrapper\">\n                <button class=\"command__create-btn\" id=\"edit-note\">Edit</button>\n            </div>\n            ");
+    note.style.backgroundColor = item.backgroundColor;
+    document.getElementById(item.status).append(note);
+    console.log(notes);
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (returnNotesList);
 
 /***/ }),
 
@@ -2764,6 +2873,79 @@ module.exports = function (name) {
     }
   } return WellKnownSymbolsStore[name];
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.array.concat.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.concat.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "./node_modules/core-js/internals/is-array.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js/internals/to-length.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "./node_modules/core-js/internals/create-property.js");
+var arraySpeciesCreate = __webpack_require__(/*! ../internals/array-species-create */ "./node_modules/core-js/internals/array-species-create.js");
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "./node_modules/core-js/internals/array-method-has-species-support.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
+var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "./node_modules/core-js/internals/engine-v8-version.js");
+
+var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
+var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
+
+// We can't use this feature detection in V8 since it causes
+// deoptimization and serious performance degradation
+// https://github.com/zloirock/core-js/issues/679
+var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
+  var array = [];
+  array[IS_CONCAT_SPREADABLE] = false;
+  return array.concat()[0] !== array;
+});
+
+var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
+
+var isConcatSpreadable = function (O) {
+  if (!isObject(O)) return false;
+  var spreadable = O[IS_CONCAT_SPREADABLE];
+  return spreadable !== undefined ? !!spreadable : isArray(O);
+};
+
+var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
+
+// `Array.prototype.concat` method
+// https://tc39.es/ecma262/#sec-array.prototype.concat
+// with adding support of @@isConcatSpreadable and @@species
+$({ target: 'Array', proto: true, forced: FORCED }, {
+  // eslint-disable-next-line no-unused-vars -- required for `.length`
+  concat: function concat(arg) {
+    var O = toObject(this);
+    var A = arraySpeciesCreate(O, 0);
+    var n = 0;
+    var i, k, length, len, E;
+    for (i = -1, length = arguments.length; i < length; i++) {
+      E = i === -1 ? O : arguments[i];
+      if (isConcatSpreadable(E)) {
+        len = toLength(E.length);
+        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
+      } else {
+        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        createProperty(A, n++, E);
+      }
+    }
+    A.length = n;
+    return A;
+  }
+});
 
 
 /***/ }),

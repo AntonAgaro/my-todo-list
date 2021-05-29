@@ -31,6 +31,10 @@ export default class Popup {
         noteObj.text = this.descr.value;
         noteObj.backgroundColor = this.color.value;
 
+        //Кладем в loclStorage
+        localStorage.setItem('list', JSON.stringify(this.notes));
+
+
         this.closePopup();
         console.log(noteObj);
         console.log(notes);

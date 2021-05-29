@@ -11,6 +11,7 @@ export default class CreateBtn extends Button {
         //Создаем заметку
         const note = document.createElement('div');
         note.className = 'notes__note';
+        note.draggable = 'true';
 
         note.innerHTML = `
         <div class="notes__close-wrapper">
@@ -26,6 +27,7 @@ export default class CreateBtn extends Button {
         //Создаем объект 
         const newNote = {
             title: this.input.value,
+            status: this.wrapper.id
         }
 
         //Пушим в массив новый объект, вычисляем его индекс и делаем его id
@@ -34,9 +36,12 @@ export default class CreateBtn extends Button {
         note.id = noteId;
         newNote.id = noteId;
 
+        //Кладем в loclStorage
+        localStorage.setItem('list', JSON.stringify(this.notes));
+
         //Выводим на страницу
         this.wrapper.append(note);
-
+        console.log(this.notes);
         //Очищаем инпут
         super.cleanInput();
     }
