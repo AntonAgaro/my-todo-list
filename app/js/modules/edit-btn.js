@@ -4,11 +4,10 @@ import {notes} from '../main';
 export default class EditBtn extends Popup {
     constructor(btn) {
         super();
-        this.btn = btn;
+        this.editBtn = btn;
     }
 
-    createPopup() {
-        console.log('popup');
+    createPopup(title) {
         const popup = document.createElement('div');
         popup.className = 'overlay';
         popup.innerHTML = ` 
@@ -18,7 +17,7 @@ export default class EditBtn extends Popup {
             </div>
             <div class="popup__title">
                 <span class="popup__title-text">Enter title:</span>
-                <input type="text" id="popup-title" class="form-control" placeholder="Username">
+                <input type="text" id="popup-title" class="form-control" value=" ${title}">
             </div>
             <div class="popup__text">
                 <span class="popup__text--title">Enter description:</span>
@@ -36,17 +35,40 @@ export default class EditBtn extends Popup {
         document.body.append(popup);
     }
 
+    deleteNote(targetNote) {
+        notes.splice(targetNote.id, 1);
+        targetNote.remove();
+        //Обновляем id всех заметок в массиве после сдвига
+        notes.forEach((item, index) => item.id = index);
+        console.log(notes);
+    }
+
     bindEditBtn() {
         document.body.addEventListener('click', (event) => {
-            if (event.target.matches(this.btn)) {
-                //Связываем popup и заметку через id
-                const id = event.target.closest('.notes__note').id;
-                this.createPopup();
-                document.querySelector('.popup').id = id;
-                
-                //Вызываем класс Popup
-                const popup = new Popup('.overlay', '.popup', '.popup__close-btn', '#popup-title','.popup__text--area', '.popup__color-input', '#save-changes', notes);
-                popup.bindPopup();
+            if (event.target.matches(this.editBtn) || event.target.matches('.notes__note-close')) {
+                const targetNote = event.target.closest('.notes__note');
+
+                if (event.target.matches(this.editBtn)) {
+                    const title = targetNote.querySelector('.notes__note-title').innerHTML;
+                    //Связываем popup и заметку через id
+                    const id = targetNote.id;
+                    this.createPopup(title);
+                    document.querySelector('.popup').setAttribute('data-id', id);
+                    
+                    //Вызываем класс Popup
+                    const popup = new Popup('.overlay', '.popup', '.popup__close-btn', '#popup-title','.popup__text--area', '.popup__color-input', '#save-changes', notes);
+                    popup.bindPopup();
+                }
+                if (event.target.matches('.notes__note-close')) {
+                    let result = confirm('Do you want to delete this note?');
+                    if(result) {
+                        this.deleteNote(targetNote);
+                    } else {
+                        return;
+                    }
+                    
+                    
+                }
             }
         });
     }

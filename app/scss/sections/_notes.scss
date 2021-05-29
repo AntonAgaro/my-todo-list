@@ -2,8 +2,8 @@
     margin-top: 10px;
     &__col {
         border-right: 2px solid #F9F8F7;
-        display: flex;
-        flex-flow: column;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
         gap: 5px;
         &--left {
             border-left: 2px solid #F9F8F7;
@@ -21,12 +21,20 @@
         border-radius: 10px;
     }
     &__note-title {
-        text-align: center;
+        padding: 5px;
+    }
+    &__note-descr {
+        padding: 5px;
     }
     &__note-close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
         cursor: pointer;
+    }
+    &__close-wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__edit-wrapper {
+        display: flex;
+        justify-content: flex-end;
     }
 }

@@ -8,27 +8,24 @@ export default class CreateBtn extends Button {
     }
 
     createNote() {
-        //Создаем
+        //Создаем заметку
         const note = document.createElement('div');
-        const noteTitle = document.createElement('p');
-        const noteDescr = document.createElement('p');
-        const closeBtn = document.createElement('i');
-        const editBtn = document.createElement('button');
-        editBtn.textContent = 'Edit';
-
-        //Присваиваем классы
         note.className = 'notes__note';
-        noteTitle.className = 'notes__note-title';
-        noteDescr.className = 'notes__note-descr';
-        closeBtn.className = 'far fa-times-circle notes__note-close';
-        editBtn.className = 'command__create-btn command__create-btn--edit'
 
-        //Записываем в title содержимое input
-        noteTitle.textContent = this.input.value;
+        note.innerHTML = `
+        <div class="notes__close-wrapper">
+            <i class="far fa-times-circle notes__note-close"></i>
+        </div>
+        <p class="notes__note-title">${this.input.value}</p>
+        <p class="notes__note-descr"></p>
+        <div class="notes__edit-wrapper">
+            <button class="command__create-btn" id="edit-note">Edit</button>
+        </div>
+        `
 
         //Создаем объект 
         const newNote = {
-            title: noteTitle.innerHTML,
+            title: this.input.value,
         }
 
         //Пушим в массив новый объект, вычисляем его индекс и делаем его id
@@ -39,14 +36,9 @@ export default class CreateBtn extends Button {
 
         //Выводим на страницу
         this.wrapper.append(note);
-        note.append(noteTitle);
-        note.append(noteDescr);
-        note.append(closeBtn);
-        note.append(editBtn);
 
         //Очищаем инпут
         super.cleanInput();
-        console.log(this.notes);
     }
 
     createError() {

@@ -17,16 +17,19 @@ export default class Popup {
     }
 
     saveChanges() {
-        const note = document.getElementById(this.popup.id),
+        const dataId = this.popup.getAttribute('data-id');
+        const note = document.getElementById(dataId),
             noteTitle = note.querySelector('.notes__note-title'),
             noteDescr = note.querySelector('.notes__note-descr');
         
         noteTitle.innerHTML = this.title.value;
         noteDescr.innerHTML = this.descr.value;
+        note.style.backgroundColor = this.color.value;
 
         const noteObj = notes.find(item => item.id == this.popup.id);
         noteObj.title = this.title.value;
         noteObj.text = this.descr.value;
+        noteObj.backgroundColor = this.color.value;
 
         this.closePopup();
         console.log(noteObj);
