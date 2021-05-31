@@ -2,11 +2,11 @@ import CreateBtn from './modules/create-button';
 import EditBtn from './modules/edit-btn';
 import dragAndDrop from './modules/drag-and-drop';
 import returnNotesList from './modules/return-notes-list';
+import Search from './modules/search';
 
 
 let notes = [];
 const notesList = localStorage.getItem('list');
-console.log(notesList);
 try {
     notes = JSON.parse(notesList);
     returnNotesList(notes);
@@ -22,6 +22,9 @@ window.addEventListener('DOMContentLoaded', () => {
     editBtn.bindEditBtn();
 
     dragAndDrop();
+
+    const search = new Search('#search' , '#reset', '#field', '.notes__note');
+    search.bindSearch();
 
 });
 
