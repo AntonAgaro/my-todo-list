@@ -3,8 +3,8 @@ import Button from './button';
 export default class CreateBtn extends Button {
     constructor(btnElement, input, notes, notesWrapper) {
         super(btnElement, input);
-        this.notes = notes;
         this.wrapper = document.querySelector(notesWrapper);
+        this.notes = notes || [];
     }
 
     createNote() {

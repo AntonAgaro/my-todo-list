@@ -256,8 +256,8 @@ var CreateBtn = /*#__PURE__*/function (_Button) {
     _classCallCheck(this, CreateBtn);
 
     _this = _super.call(this, btnElement, input);
-    _this.notes = notes;
     _this.wrapper = document.querySelector(notesWrapper);
+    _this.notes = notes || [];
     return _this;
   }
 
