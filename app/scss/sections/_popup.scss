@@ -41,8 +41,45 @@
     }
     &__color {
         display: flex;
-        justify-content: flex-start;
-        gap: 20px;
+        justify-content: space-between;
+    }
+    &__color-block {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em black;
+        cursor: pointer;
+        &--white {
+            background-color: white;
+        }
+        &--red {
+            background-color: red;
+        }
+        &--orange {
+            background-color: orange;
+        }
+        &--yellow {
+            background-color: yellow;
+        }
+        &--green {
+            background-color: green;
+        }
+        &--blue {
+            background-color: blue;
+        }
+        &--deep-sky-blue {
+            background-color: #00BFFF;
+        }
+        &--violet {
+            background-color: violet;
+        }  
+        &--pink {
+            background-color: pink;
+        }
+        &--active {
+            box-shadow: none;
+            border-color: red;
+        }
     }
     &__buttons {
         display: flex;

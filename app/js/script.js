@@ -282,8 +282,7 @@ var CreateBtn = /*#__PURE__*/function (_Button) {
 
       localStorage.setItem('list', JSON.stringify(this.notes)); //Выводим на страницу
 
-      this.wrapper.append(note);
-      console.log(this.notes); //Очищаем инпут
+      this.wrapper.append(note); //Очищаем инпут
 
       _get(_getPrototypeOf(CreateBtn.prototype), "cleanInput", this).call(this);
     }
@@ -299,11 +298,12 @@ var CreateBtn = /*#__PURE__*/function (_Button) {
       var _this2 = this;
 
       this.btn.addEventListener('click', function () {
-        if (_this2.input.value) {
-          _this2.createNote();
-        } else {
-          _this2.createError();
-        }
+        _this2.createNote(); // if (this.input.value) {
+        //     this.createNote();
+        // } else {
+        //     this.createError();
+        // }
+
       });
     }
   }]);
@@ -379,33 +379,36 @@ var dragAndDrop = function dragAndDrop() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EditBtn; });
-/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
-/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_object_set_prototype_of_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.set-prototype-of.js */ "./node_modules/core-js/modules/es.object.set-prototype-of.js");
-/* harmony import */ var core_js_modules_es_object_set_prototype_of_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_set_prototype_of_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.get-prototype-of.js */ "./node_modules/core-js/modules/es.object.get-prototype-of.js");
-/* harmony import */ var core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_reflect_construct_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.reflect.construct.js */ "./node_modules/core-js/modules/es.reflect.construct.js");
-/* harmony import */ var core_js_modules_es_reflect_construct_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_reflect_construct_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.symbol.iterator.js */ "./node_modules/core-js/modules/es.symbol.iterator.js");
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./popup */ "./app/js/modules/popup.js");
-/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../main */ "./app/js/main.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.splice.js */ "./node_modules/core-js/modules/es.array.splice.js");
+/* harmony import */ var core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_splice_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_object_set_prototype_of_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.set-prototype-of.js */ "./node_modules/core-js/modules/es.object.set-prototype-of.js");
+/* harmony import */ var core_js_modules_es_object_set_prototype_of_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_set_prototype_of_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.object.get-prototype-of.js */ "./node_modules/core-js/modules/es.object.get-prototype-of.js");
+/* harmony import */ var core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_reflect_construct_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.reflect.construct.js */ "./node_modules/core-js/modules/es.reflect.construct.js");
+/* harmony import */ var core_js_modules_es_reflect_construct_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_reflect_construct_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.symbol.iterator.js */ "./node_modules/core-js/modules/es.symbol.iterator.js");
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./popup */ "./app/js/modules/popup.js");
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../main */ "./app/js/main.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 
 
 
@@ -460,23 +463,23 @@ var EditBtn = /*#__PURE__*/function (_Popup) {
 
   _createClass(EditBtn, [{
     key: "createPopup",
-    value: function createPopup(title) {
+    value: function createPopup(title, descr) {
       var popup = document.createElement('div');
       popup.className = 'overlay';
-      popup.innerHTML = " \n        <div class=\"popup\">\n            <div class=\"popup__close-wrapper\">\n                <i class=\"far fa-times-circle popup__close-btn\"></i>\n            </div>\n            <div class=\"popup__title\">\n                <span class=\"popup__title-text\">Enter title:</span>\n                <input type=\"text\" id=\"popup-title\" class=\"form-control\" value=\" ".concat(title, "\">\n            </div>\n            <div class=\"popup__text\">\n                <span class=\"popup__text--title\">Enter description:</span>\n                <textarea class=\"form-control popup__text--area\" aria-label=\"With textarea\"></textarea>\n            </div>\n            <div class=\"popup__color\">\n                <span class=\"popup__color-text\">Choose color:</span>\n                <input class=\"popup__color-input\" type=\"color\">\n            </div>\n            <div class=\"popup__buttons\">\n                <button class=\"command__create-btn\" id=\"save-changes\" type=\"button\" >Save changes</button>\n            </div>\n        </div>\n        ");
+      popup.innerHTML = " \n        <div class=\"popup\">\n            <div class=\"popup__close-wrapper\">\n                <i class=\"far fa-times-circle popup__close-btn\"></i>\n            </div>\n            <div class=\"popup__title\">\n                <span class=\"popup__title-text\">Enter title:</span>\n                <input type=\"text\" id=\"popup-title\" class=\"form-control\" value=\" ".concat(title, "\">\n            </div>\n            <div class=\"popup__text\">\n                <span class=\"popup__text--title\">Enter description:</span>\n                <textarea class=\"form-control popup__text--area\" aria-label=\"With textarea\">").concat(descr, "</textarea>\n            </div>\n            <div class=\"popup__color\">\n                <span class=\"popup__color-text\">Choose color:</span>\n                <div class=\"popup__color-block popup__color-block--white\"></div>\n                <div class=\"popup__color-block popup__color-block--red\"></div>\n                <div class=\"popup__color-block popup__color-block--orange\"></div>\n                <div class=\"popup__color-block popup__color-block--yellow\"></div>\n                <div class=\"popup__color-block popup__color-block--green\"></div>\n                <div class=\"popup__color-block popup__color-block--blue\"></div>\n                <div class=\"popup__color-block popup__color-block--deep-sky-blue\"></div>\n                <div class=\"popup__color-block popup__color-block--violet\"></div>     \n                <div class=\"popup__color-block popup__color-block--pink\"></div>           \n            </div>\n            <div class=\"popup__buttons\">\n                <button class=\"command__create-btn\" id=\"save-changes\" type=\"button\" >Save changes</button>\n            </div>\n        </div>\n        ");
       document.body.append(popup);
     }
   }, {
     key: "deleteNote",
     value: function deleteNote(targetNote) {
-      _main__WEBPACK_IMPORTED_MODULE_13__["notes"].splice(targetNote.id, 1);
+      _main__WEBPACK_IMPORTED_MODULE_14__["notes"].splice(targetNote.id, 1);
       targetNote.remove(); //Обновляем id всех заметок в массиве после сдвига
 
-      _main__WEBPACK_IMPORTED_MODULE_13__["notes"].forEach(function (item, index) {
+      _main__WEBPACK_IMPORTED_MODULE_14__["notes"].forEach(function (item, index) {
         return item.id = index;
       }); //Кладем в loclStorage
 
-      localStorage.setItem('list', JSON.stringify(_main__WEBPACK_IMPORTED_MODULE_13__["notes"]));
+      localStorage.setItem('list', JSON.stringify(_main__WEBPACK_IMPORTED_MODULE_14__["notes"]));
     }
   }, {
     key: "bindEditBtn",
@@ -488,15 +491,16 @@ var EditBtn = /*#__PURE__*/function (_Popup) {
           var targetNote = event.target.closest('.notes__note');
 
           if (event.target.matches(_this2.editBtn)) {
-            var title = targetNote.querySelector('.notes__note-title').innerHTML; //Связываем popup и заметку через id
+            var title = targetNote.querySelector('.notes__note-title').innerHTML;
+            var descr = targetNote.querySelector('.notes__note-descr').innerHTML; //Связываем popup и заметку через id
 
             var id = targetNote.id;
 
-            _this2.createPopup(title);
+            _this2.createPopup(title, descr);
 
             document.querySelector('.popup').setAttribute('data-id', id); //Вызываем класс Popup
 
-            var popup = new _popup__WEBPACK_IMPORTED_MODULE_12__["default"]('.overlay', '.popup', '.popup__close-btn', '#popup-title', '.popup__text--area', '.popup__color-input', '#save-changes', _main__WEBPACK_IMPORTED_MODULE_13__["notes"]);
+            var popup = new _popup__WEBPACK_IMPORTED_MODULE_13__["default"]('.overlay', '.popup', '.popup__close-btn', '#popup-title', '.popup__text--area', '.popup__color-block', '#save-changes', _main__WEBPACK_IMPORTED_MODULE_14__["notes"]);
             popup.bindPopup();
           }
 
@@ -515,7 +519,7 @@ var EditBtn = /*#__PURE__*/function (_Popup) {
   }]);
 
   return EditBtn;
-}(_popup__WEBPACK_IMPORTED_MODULE_12__["default"]);
+}(_popup__WEBPACK_IMPORTED_MODULE_13__["default"]);
 
 
 
@@ -533,7 +537,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Popup; });
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.find.js */ "./node_modules/core-js/modules/es.array.find.js");
 /* harmony import */ var core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../main */ "./app/js/main.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../main */ "./app/js/main.js");
+
 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -545,7 +552,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var Popup = /*#__PURE__*/function () {
-  function Popup(popupWrapper, popup, closeBtn, title, descr, color, saveBtn, notes) {
+  function Popup(popupWrapper, popup, closeBtn, title, descr, colorBlock, saveBtn, notes) {
     _classCallCheck(this, Popup);
 
     this.popupWrapper = document.querySelector(popupWrapper);
@@ -553,7 +560,7 @@ var Popup = /*#__PURE__*/function () {
     this.closeBtn = document.querySelector(closeBtn);
     this.title = document.querySelector(title);
     this.descr = document.querySelector(descr);
-    this.color = document.querySelector(color);
+    this.colorBlocks = document.querySelectorAll(colorBlock);
     this.saveBtn = document.querySelector(saveBtn);
     this.notes = notes;
   }
@@ -566,41 +573,51 @@ var Popup = /*#__PURE__*/function () {
   }, {
     key: "saveChanges",
     value: function saveChanges() {
-      var _this = this;
-
       var dataId = this.popup.getAttribute('data-id');
       var note = document.getElementById(dataId),
           noteTitle = note.querySelector('.notes__note-title'),
           noteDescr = note.querySelector('.notes__note-descr');
       noteTitle.innerHTML = this.title.value;
       noteDescr.innerHTML = this.descr.value;
-      note.style.backgroundColor = this.color.value;
-      var noteObj = _main__WEBPACK_IMPORTED_MODULE_1__["notes"].find(function (item) {
-        return item.id == _this.popup.id;
+      var noteObj = _main__WEBPACK_IMPORTED_MODULE_2__["notes"].find(function (item) {
+        return item.id == dataId;
       });
       noteObj.title = this.title.value;
       noteObj.text = this.descr.value;
-      noteObj.backgroundColor = this.color.value; //Кладем в loclStorage
+      this.colorBlocks.forEach(function (block) {
+        if (block.classList.contains('popup__color-block--active')) {
+          var choosenColor = window.getComputedStyle(block).backgroundColor;
+          note.style.backgroundColor = choosenColor;
+          noteObj.backgroundColor = choosenColor;
+        }
+      });
+      console.log(this.notes); //Кладем в loclStorage
 
       localStorage.setItem('list', JSON.stringify(this.notes));
       this.closePopup();
-      console.log(noteObj);
-      console.log(_main__WEBPACK_IMPORTED_MODULE_1__["notes"]);
     }
   }, {
     key: "bindPopup",
     value: function bindPopup() {
-      var _this2 = this;
+      var _this = this;
 
       this.popupWrapper.addEventListener('click', function (event) {
         var target = event.target;
 
-        if (target == _this2.closeBtn || target == _this2.popupWrapper) {
-          _this2.closePopup();
+        if (target == _this.closeBtn || target == _this.popupWrapper) {
+          _this.closePopup();
         }
 
-        if (target == _this2.saveBtn) {
-          _this2.saveChanges();
+        if (target.matches('.popup__color-block')) {
+          _this.colorBlocks.forEach(function (block) {
+            block.classList.remove('popup__color-block--active');
+          });
+
+          target.classList.add('popup__color-block--active');
+        }
+
+        if (target == _this.saveBtn) {
+          _this.saveChanges();
         }
       });
     }

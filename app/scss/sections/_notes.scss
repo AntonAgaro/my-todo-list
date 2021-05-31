@@ -25,7 +25,8 @@
             opacity: 0.6;
         }
         &--found {
-            box-shadow: 0px 0px 18px 0px rgba(255, 107, 50, 1);
+            // box-shadow: 0px 0px 18px 0px rgba(255, 107, 50, 1);
+            animation: light 1s infinite alternate;
         }
         &--not-found {
             opacity: 0.5;
@@ -47,5 +48,15 @@
     &__edit-wrapper {
         display: flex;
         justify-content: flex-end;
+    }
+}
+
+@keyframes light {
+    from {
+        box-shadow: 0px 0px 18px 0px rgba(255, 107, 50, 1)
+    }
+    to {
+        box-shadow: 0px 0px 90px 0px rgba(255, 107, 50, 1)
+
     }
 }

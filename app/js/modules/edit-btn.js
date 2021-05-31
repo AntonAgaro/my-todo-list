@@ -7,7 +7,7 @@ export default class EditBtn extends Popup {
         this.editBtn = btn;
     }
 
-    createPopup(title) {
+    createPopup(title, descr) {
         const popup = document.createElement('div');
         popup.className = 'overlay';
         popup.innerHTML = ` 
@@ -21,11 +21,19 @@ export default class EditBtn extends Popup {
             </div>
             <div class="popup__text">
                 <span class="popup__text--title">Enter description:</span>
-                <textarea class="form-control popup__text--area" aria-label="With textarea"></textarea>
+                <textarea class="form-control popup__text--area" aria-label="With textarea">${descr}</textarea>
             </div>
             <div class="popup__color">
                 <span class="popup__color-text">Choose color:</span>
-                <input class="popup__color-input" type="color">
+                <div class="popup__color-block popup__color-block--white"></div>
+                <div class="popup__color-block popup__color-block--red"></div>
+                <div class="popup__color-block popup__color-block--orange"></div>
+                <div class="popup__color-block popup__color-block--yellow"></div>
+                <div class="popup__color-block popup__color-block--green"></div>
+                <div class="popup__color-block popup__color-block--blue"></div>
+                <div class="popup__color-block popup__color-block--deep-sky-blue"></div>
+                <div class="popup__color-block popup__color-block--violet"></div>     
+                <div class="popup__color-block popup__color-block--pink"></div>           
             </div>
             <div class="popup__buttons">
                 <button class="command__create-btn" id="save-changes" type="button" >Save changes</button>
@@ -52,13 +60,14 @@ export default class EditBtn extends Popup {
 
                 if (event.target.matches(this.editBtn)) {
                     const title = targetNote.querySelector('.notes__note-title').innerHTML;
+                    const descr = targetNote.querySelector('.notes__note-descr').innerHTML;
                     //Связываем popup и заметку через id
                     const id = targetNote.id;
-                    this.createPopup(title);
+                    this.createPopup(title, descr);
                     document.querySelector('.popup').setAttribute('data-id', id);
                     
                     //Вызываем класс Popup
-                    const popup = new Popup('.overlay', '.popup', '.popup__close-btn', '#popup-title','.popup__text--area', '.popup__color-input', '#save-changes', notes);
+                    const popup = new Popup('.overlay', '.popup', '.popup__close-btn', '#popup-title','.popup__text--area', '.popup__color-block', '#save-changes', notes);
                     popup.bindPopup();
                 }
                 if (event.target.matches('.notes__note-close')) {

@@ -41,7 +41,6 @@ export default class CreateBtn extends Button {
 
         //Выводим на страницу
         this.wrapper.append(note);
-        console.log(this.notes);
         //Очищаем инпут
         super.cleanInput();
     }
@@ -53,11 +52,12 @@ export default class CreateBtn extends Button {
 
     bindBtn() {
         this.btn.addEventListener('click', () => {
-            if (this.input.value) {
-                this.createNote();
-            } else {
-                this.createError();
-            }
+            this.createNote();
+            // if (this.input.value) {
+            //     this.createNote();
+            // } else {
+            //     this.createError();
+            // }
         });
     }
 
