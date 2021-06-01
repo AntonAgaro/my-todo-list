@@ -25,7 +25,8 @@ export default class Popup {
         
         noteTitle.innerHTML = this.title.value;
         noteDescr.innerHTML = this.descr.value;
-
+        console.log(this.notes);
+        console.log(notes);
         const noteObj = notes.find(item => item.id == dataId);
         noteObj.title = this.title.value;
         noteObj.text = this.descr.value;

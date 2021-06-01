@@ -6,11 +6,11 @@ import Search from './modules/search';
 
 
 let notes = [];
-const notesList = localStorage.getItem('list');
-try {
-    notes = JSON.parse(notesList);
+
+if (localStorage.getItem('list') !== null) {
+    notes = JSON.parse(localStorage.getItem('list'));
     returnNotesList(notes);
-} catch{};
+} 
 
 
 window.addEventListener('DOMContentLoaded', () => {

@@ -107,14 +107,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var notes = [];
-var notesList = localStorage.getItem('list');
 
-try {
-  notes = JSON.parse(notesList);
+if (localStorage.getItem('list') !== null) {
+  notes = JSON.parse(localStorage.getItem('list'));
   Object(_modules_return_notes_list__WEBPACK_IMPORTED_MODULE_3__["default"])(notes);
-} catch (_unused) {}
+}
 
-;
 window.addEventListener('DOMContentLoaded', function () {
   var createBtn = new _modules_create_button__WEBPACK_IMPORTED_MODULE_0__["default"]('#create', '#field', notes, '#todo');
   createBtn.bindBtn();
@@ -579,6 +577,8 @@ var Popup = /*#__PURE__*/function () {
           noteDescr = note.querySelector('.notes__note-descr');
       noteTitle.innerHTML = this.title.value;
       noteDescr.innerHTML = this.descr.value;
+      console.log(this.notes);
+      console.log(_main__WEBPACK_IMPORTED_MODULE_2__["notes"]);
       var noteObj = _main__WEBPACK_IMPORTED_MODULE_2__["notes"].find(function (item) {
         return item.id == dataId;
       });
