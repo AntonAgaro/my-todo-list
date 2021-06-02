@@ -2,12 +2,12 @@
     margin-top: 10px;
     color: #f9f8f7;
     &__todo {
-        color: red;
+        color: SaddleBrown;
     }
     &__in-work {
-        color: yellow;
+        color: blueviolet;
     }
     &__done {
-        color: green;
+        color: limegreen;
     }
 }
