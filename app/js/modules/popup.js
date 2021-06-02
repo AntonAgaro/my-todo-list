@@ -40,8 +40,6 @@ export default class Popup {
             }
         });
 
-        console.log(this.notes);
-
         //Кладем в loclStorage
         localStorage.setItem('list', JSON.stringify(this.notes));
 
@@ -51,7 +49,7 @@ export default class Popup {
     bindPopup() {
         this.popupWrapper.addEventListener('click', (event) => {
             const target = event.target;
-            if (target == this.closeBtn || target == this.popupWrapper) {
+            if (target == this.closeBtn) {
                 this.closePopup()
             } 
 

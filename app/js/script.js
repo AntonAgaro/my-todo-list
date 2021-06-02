@@ -590,8 +590,7 @@ var Popup = /*#__PURE__*/function () {
           note.style.backgroundColor = choosenColor;
           noteObj.backgroundColor = choosenColor;
         }
-      });
-      console.log(this.notes); //Кладем в loclStorage
+      }); //Кладем в loclStorage
 
       localStorage.setItem('list', JSON.stringify(this.notes));
       this.closePopup();
@@ -604,7 +603,7 @@ var Popup = /*#__PURE__*/function () {
       this.popupWrapper.addEventListener('click', function (event) {
         var target = event.target;
 
-        if (target == _this.closeBtn || target == _this.popupWrapper) {
+        if (target == _this.closeBtn) {
           _this.closePopup();
         }
 
